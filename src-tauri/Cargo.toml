@@ -1,0 +1,31 @@
+[package]
+name = "focus_app"
+version = "0.1.0"
+description = "A Tauri App"
+authors = ["you"]
+license = ""
+repository = ""
+edition = "2021"
+rust-version = "1.60"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.2", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tauri = { version = "1.2", features = ["api-all"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+rusqlite = "0.29"
+reqwest = { version = "0.11", features = ["json", "blocking"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+[target."cfg(target_os = \"macos\")".dependencies]
+macos-accessibility-client-sys = "0.0.3"
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
